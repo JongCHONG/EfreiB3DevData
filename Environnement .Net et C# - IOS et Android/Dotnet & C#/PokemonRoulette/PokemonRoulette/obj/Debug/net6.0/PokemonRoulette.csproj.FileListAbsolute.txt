@@ -1,0 +1,15 @@
+C:\Users\Txpmdroflol\OneDrive\Efrei\Environnement .Net et C# - IOS et Android\Dotnet & C#\PokemonRoulette\PokemonRoulette\bin\Debug\net6.0\PokemonRoulette.exe
+C:\Users\Txpmdroflol\OneDrive\Efrei\Environnement .Net et C# - IOS et Android\Dotnet & C#\PokemonRoulette\PokemonRoulette\bin\Debug\net6.0\PokemonRoulette.deps.json
+C:\Users\Txpmdroflol\OneDrive\Efrei\Environnement .Net et C# - IOS et Android\Dotnet & C#\PokemonRoulette\PokemonRoulette\bin\Debug\net6.0\PokemonRoulette.runtimeconfig.json
+C:\Users\Txpmdroflol\OneDrive\Efrei\Environnement .Net et C# - IOS et Android\Dotnet & C#\PokemonRoulette\PokemonRoulette\bin\Debug\net6.0\PokemonRoulette.dll
+C:\Users\Txpmdroflol\OneDrive\Efrei\Environnement .Net et C# - IOS et Android\Dotnet & C#\PokemonRoulette\PokemonRoulette\bin\Debug\net6.0\PokemonRoulette.pdb
+C:\Users\Txpmdroflol\OneDrive\Efrei\Environnement .Net et C# - IOS et Android\Dotnet & C#\PokemonRoulette\PokemonRoulette\obj\Debug\net6.0\PokemonRoulette.csproj.AssemblyReference.cache
+C:\Users\Txpmdroflol\OneDrive\Efrei\Environnement .Net et C# - IOS et Android\Dotnet & C#\PokemonRoulette\PokemonRoulette\obj\Debug\net6.0\PokemonRoulette.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Txpmdroflol\OneDrive\Efrei\Environnement .Net et C# - IOS et Android\Dotnet & C#\PokemonRoulette\PokemonRoulette\obj\Debug\net6.0\PokemonRoulette.AssemblyInfoInputs.cache
+C:\Users\Txpmdroflol\OneDrive\Efrei\Environnement .Net et C# - IOS et Android\Dotnet & C#\PokemonRoulette\PokemonRoulette\obj\Debug\net6.0\PokemonRoulette.AssemblyInfo.cs
+C:\Users\Txpmdroflol\OneDrive\Efrei\Environnement .Net et C# - IOS et Android\Dotnet & C#\PokemonRoulette\PokemonRoulette\obj\Debug\net6.0\PokemonRoulette.csproj.CoreCompileInputs.cache
+C:\Users\Txpmdroflol\OneDrive\Efrei\Environnement .Net et C# - IOS et Android\Dotnet & C#\PokemonRoulette\PokemonRoulette\obj\Debug\net6.0\PokemonRoulette.dll
+C:\Users\Txpmdroflol\OneDrive\Efrei\Environnement .Net et C# - IOS et Android\Dotnet & C#\PokemonRoulette\PokemonRoulette\obj\Debug\net6.0\refint\PokemonRoulette.dll
+C:\Users\Txpmdroflol\OneDrive\Efrei\Environnement .Net et C# - IOS et Android\Dotnet & C#\PokemonRoulette\PokemonRoulette\obj\Debug\net6.0\PokemonRoulette.pdb
+C:\Users\Txpmdroflol\OneDrive\Efrei\Environnement .Net et C# - IOS et Android\Dotnet & C#\PokemonRoulette\PokemonRoulette\obj\Debug\net6.0\PokemonRoulette.genruntimeconfig.cache
+C:\Users\Txpmdroflol\OneDrive\Efrei\Environnement .Net et C# - IOS et Android\Dotnet & C#\PokemonRoulette\PokemonRoulette\obj\Debug\net6.0\ref\PokemonRoulette.dll

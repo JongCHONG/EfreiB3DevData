@@ -1,0 +1,74 @@
+package main;
+
+import java.util.ArrayList;
+
+public class Stage {
+
+	//add a list of ennemis
+	private int lvl;
+	private String name;
+	private ArrayList<Monster> Monsters;
+
+	public Stage(int lvl, String name) {
+		super();
+		this.lvl = lvl;
+		this.name = name;
+		
+		if(name == "First Stage") {			
+			Monsters = new ArrayList<Monster>();
+			Monster Monster1 = new Monster("Goblin", 150);
+			Monsters.add(Monster1);
+		}
+		if(name == "Second Stage") {			
+			Monsters = new ArrayList<Monster>();
+			Monster Monster1 = new Monster("Orc", 150);
+			Monsters.add(Monster1);
+		}
+		if(name == "Third Stage") {			
+			Monsters = new ArrayList<Monster>();
+			Monster Monster1 = new Monster("Nazgul", 150);
+			Monsters.add(Monster1);
+		}
+		if(name == "Boss Stage") {			
+			Monsters = new ArrayList<Monster>();
+			Monster Monster1 = new Monster("Sauron", 150);
+			Monsters.add(Monster1);
+		}
+	}
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Stage(int lvl) {
+		super();
+		this.lvl = lvl;
+	}
+
+	public int getLvl() {
+		return lvl;
+	}
+
+	public void setLvl(int lvl) {
+		this.lvl = lvl;
+	}
+
+	public ArrayList<Monster> getMonsters() {
+		return Monsters;
+	}
+
+	public void setMonsters(ArrayList<Monster> monsters) {
+		Monsters = monsters;
+	}
+
+	public Stage get(int stageNumber) {
+		// TODO Auto-generated method stub
+		return null;
+	} 
+	
+	
+}

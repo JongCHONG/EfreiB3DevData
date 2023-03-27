@@ -1,0 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Six+Caps&display=swap");
+
+.menu {
+  font-family: "Six Caps", sans-serif;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+ol {
+  display: flex;
+  font-family: "Six Caps", sans-serif;
+  margin-top: 3px;
+  position: absolute;
+}
+
+li {
+  font-size: 20px;
+  letter-spacing: 2px;
+  list-style: none;
+  padding-right: 10px;
+}
+
+.studentsProfessorsMenu{
+  margin-left: 132px;
+}
+
+.classesCoursesMenu {
+  margin-left: 263px;
+}
+

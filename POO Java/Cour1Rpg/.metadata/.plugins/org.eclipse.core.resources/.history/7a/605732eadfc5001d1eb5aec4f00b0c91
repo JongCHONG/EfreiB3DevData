@@ -1,0 +1,68 @@
+package enums;
+
+import main.Monster;
+import main.Equipements.Weapon;
+import main.Character;
+
+public enum Texts {
+	WELCOME("\nWelcome to "),
+	ENTERPLAYERNAME("\nEnter player name..."),
+	CHOOSEJOB("Choose your job...\n\n1: Warrior \n2: Sorcerer \n3: Thief\n"),
+	PLAYER1("\nPlayer 1 "),
+	CHOOSEACTION("Choose your action."),
+	ATTACK("\n1: Attack."),
+	GUARD("2: Guard.\n"),
+	STEALLIFE("\n2: Steal life."),
+	FIREBOLT("\n2: Firebolt."),
+	NEXTSTAGE("Processing to next stage..."),
+	WASTED("You are wasted!"),
+	RESTART("Restart...?"),
+	PRESS1FORYES("\n1: Yes."),
+	PRESS2FORNO("\n2: No."),
+	UNDERLINE("\u005F"),
+	EQUAL("\u003D");
+	
+	private final String Text;
+	
+	Texts(String Text) {
+        this.Text = Text;
+    }
+
+    public String getText() {
+        return Text;
+    }
+    
+	public static void separator (String text, String code) {
+		System.out.println(text);
+		System.out.println(code.repeat(text.length())+ "\n");
+	}
+	
+    public static void playerAttackMonster(Character Player, Monster Monster, Weapon Weapon) {
+		System.out.println(
+			"\n" 
+			+ Player.getCharacterName() 
+			+ " attacked " + Monster.getMonsterName() 
+			+ " with " + Weapon.getWeaponName() + "! " 
+			+ Colors.printInColor(Integer.toString(Weapon.getAttack())+ "!", Colors.RED));
+    }
+    
+    public static void monsterAttackPlayer(Monster Monster, Character Player) {
+    	System.out.println(Monster.getMonsterName()
+    		+ " attacked " + Player.getCharacterName()+ "! " 
+    		+ Colors.printInColor(Monster.getDamage() + "!", Colors.RED));
+    }
+    
+    public static void healthPointLeft(String name, int HP) {
+    	System.out.println(name 
+    		+ " - HP left: " + HP + "\n");
+    }
+    
+    public static void stageMonster(String stageName, Monster monster) {
+    	System.out.println(
+    		stageName 
+    		+ " \n " 
+    		+ monster.getMonsterName() 
+    		+ " - HP: " 
+    		+ monster.getMonsterHealth());
+    }
+}

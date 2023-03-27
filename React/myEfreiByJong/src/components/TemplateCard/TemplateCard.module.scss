@@ -1,0 +1,18 @@
+.card {
+  width: 600px;
+  padding: 20px;
+  background-color: black;
+  -webkit-box-shadow: 5px 5px 2px 0px black;
+  box-shadow: 5px 5px 2px 0px black;
+}
+
+.card a {
+  color: white;
+  text-decoration: none;
+}
+
+.container {
+  border: 1px dashed #725b45;
+
+  padding: 10px;
+}

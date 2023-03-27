@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="main.Helpers.Helpers"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="Items.HealthItem"/>
+    <fullyQualifiedTypeName name="enums.HealthItems"/>
+    <fullyQualifiedTypeName name="enums.Texts"/>
+    <fullyQualifiedTypeName name="main.Monster"/>
+    <fullyQualifiedTypeName name="main.Character"/>
+    <fullyQualifiedTypeName name="enums.Weapons"/>
+    <fullyQualifiedTypeName name="enums.JobNames"/>
+    <fullyQualifiedTypeName name="main.Stage"/>
+    <fullyQualifiedTypeName name="main.Equipements.Weapon"/>
+    <fullyQualifiedTypeName name="main.Job"/>
+</qualifiedTypeNameHistroy>

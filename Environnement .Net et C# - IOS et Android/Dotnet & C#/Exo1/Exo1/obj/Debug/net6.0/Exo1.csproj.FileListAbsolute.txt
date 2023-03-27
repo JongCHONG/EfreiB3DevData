@@ -1,0 +1,15 @@
+C:\Users\Txpmdroflol\OneDrive\Efrei\Environnement .Net et C# - IOS et Android\C#\Exo1\Exo1\bin\Debug\net6.0\Exo1.exe
+C:\Users\Txpmdroflol\OneDrive\Efrei\Environnement .Net et C# - IOS et Android\C#\Exo1\Exo1\bin\Debug\net6.0\Exo1.deps.json
+C:\Users\Txpmdroflol\OneDrive\Efrei\Environnement .Net et C# - IOS et Android\C#\Exo1\Exo1\bin\Debug\net6.0\Exo1.runtimeconfig.json
+C:\Users\Txpmdroflol\OneDrive\Efrei\Environnement .Net et C# - IOS et Android\C#\Exo1\Exo1\bin\Debug\net6.0\Exo1.dll
+C:\Users\Txpmdroflol\OneDrive\Efrei\Environnement .Net et C# - IOS et Android\C#\Exo1\Exo1\bin\Debug\net6.0\Exo1.pdb
+C:\Users\Txpmdroflol\OneDrive\Efrei\Environnement .Net et C# - IOS et Android\C#\Exo1\Exo1\obj\Debug\net6.0\Exo1.csproj.AssemblyReference.cache
+C:\Users\Txpmdroflol\OneDrive\Efrei\Environnement .Net et C# - IOS et Android\C#\Exo1\Exo1\obj\Debug\net6.0\Exo1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Txpmdroflol\OneDrive\Efrei\Environnement .Net et C# - IOS et Android\C#\Exo1\Exo1\obj\Debug\net6.0\Exo1.AssemblyInfoInputs.cache
+C:\Users\Txpmdroflol\OneDrive\Efrei\Environnement .Net et C# - IOS et Android\C#\Exo1\Exo1\obj\Debug\net6.0\Exo1.AssemblyInfo.cs
+C:\Users\Txpmdroflol\OneDrive\Efrei\Environnement .Net et C# - IOS et Android\C#\Exo1\Exo1\obj\Debug\net6.0\Exo1.csproj.CoreCompileInputs.cache
+C:\Users\Txpmdroflol\OneDrive\Efrei\Environnement .Net et C# - IOS et Android\C#\Exo1\Exo1\obj\Debug\net6.0\Exo1.dll
+C:\Users\Txpmdroflol\OneDrive\Efrei\Environnement .Net et C# - IOS et Android\C#\Exo1\Exo1\obj\Debug\net6.0\refint\Exo1.dll
+C:\Users\Txpmdroflol\OneDrive\Efrei\Environnement .Net et C# - IOS et Android\C#\Exo1\Exo1\obj\Debug\net6.0\Exo1.pdb
+C:\Users\Txpmdroflol\OneDrive\Efrei\Environnement .Net et C# - IOS et Android\C#\Exo1\Exo1\obj\Debug\net6.0\Exo1.genruntimeconfig.cache
+C:\Users\Txpmdroflol\OneDrive\Efrei\Environnement .Net et C# - IOS et Android\C#\Exo1\Exo1\obj\Debug\net6.0\ref\Exo1.dll

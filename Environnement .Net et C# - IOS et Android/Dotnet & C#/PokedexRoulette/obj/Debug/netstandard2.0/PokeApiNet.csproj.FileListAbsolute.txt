@@ -1,0 +1,5 @@
+C:\Users\Txpmdroflol\OneDrive\Efrei\Environnement .Net et C# - IOS et Android\Dotnet & C#\PokedexRoulette\obj\Debug\netstandard2.0\PokeApiNet.csproj.AssemblyReference.cache
+C:\Users\Txpmdroflol\OneDrive\Efrei\Environnement .Net et C# - IOS et Android\Dotnet & C#\PokedexRoulette\obj\Debug\netstandard2.0\PokeApiNet.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Txpmdroflol\OneDrive\Efrei\Environnement .Net et C# - IOS et Android\Dotnet & C#\PokedexRoulette\obj\Debug\netstandard2.0\PokeApiNet.AssemblyInfoInputs.cache
+C:\Users\Txpmdroflol\OneDrive\Efrei\Environnement .Net et C# - IOS et Android\Dotnet & C#\PokedexRoulette\obj\Debug\netstandard2.0\PokeApiNet.AssemblyInfo.cs
+C:\Users\Txpmdroflol\OneDrive\Efrei\Environnement .Net et C# - IOS et Android\Dotnet & C#\PokedexRoulette\obj\Debug\netstandard2.0\PokeApiNet.csproj.CoreCompileInputs.cache

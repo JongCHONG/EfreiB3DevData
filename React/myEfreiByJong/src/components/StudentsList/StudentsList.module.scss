@@ -1,0 +1,15 @@
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  min-width: 400px;
+}
+
+thead {
+  border-bottom: 1px solid white;
+}
+
+.separator {
+  height: 10px;
+}

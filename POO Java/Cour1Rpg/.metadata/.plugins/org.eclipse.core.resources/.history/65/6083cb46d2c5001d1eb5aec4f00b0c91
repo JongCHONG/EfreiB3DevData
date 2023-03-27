@@ -1,0 +1,85 @@
+package main;
+
+import enums.JobNames;
+import enums.WeaponNames;
+import main.Equipements.Weapon;
+import main.Jobs.Sorcerer;
+import main.Jobs.Thief;
+import main.Jobs.Warrior;
+
+public class Job implements Warrior, Thief, Sorcerer {
+
+	private int HealthPoints;
+	private String JobName;
+	private int damage;
+	private Weapon warriorWeapon;
+	
+	public Job(int HealthPoints, String jobName) {
+		super();
+		this.HealthPoints = HealthPoints;
+		this.JobName = jobName;
+		if (this.JobName == JobNames.WARRIOR.getJobName()) {
+			this.warriorWeapon = new Weapon(WeaponNames.STORMBREAKER.getWeaponName(), 20, 10);
+		}
+	}
+
+	
+	@Override
+	public String toString() {
+		return "Job [HealthPoints=" + HealthPoints + ", JobName=" + JobName + ", damage=" + damage + "]";
+	}
+
+	public int getHealthPoints() {
+		return HealthPoints;
+	}
+
+	public void setHealthPoints(int HealthPoints) {
+		this.HealthPoints = HealthPoints;
+	}
+
+	public String getJobName() {
+		return JobName;
+	}
+
+	public void setJobName(String jobName) {
+		JobName = jobName;
+	}
+
+	public int getDamage() {
+		return damage;
+	}
+
+	public void setDamage(int damage) {
+		this.damage = damage;
+	}
+
+	@Override
+	public int guard() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int stealLife() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int firebolt() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	public Weapon getWarriorWeapon() {
+		return warriorWeapon;
+	}
+
+
+	public void setWarriorWeapon(Weapon warriorWeapon) {
+		this.warriorWeapon = warriorWeapon;
+	}
+	
+	
+}

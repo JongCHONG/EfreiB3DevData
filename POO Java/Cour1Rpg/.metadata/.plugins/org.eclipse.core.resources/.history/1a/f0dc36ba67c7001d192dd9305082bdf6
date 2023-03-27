@@ -1,0 +1,128 @@
+package main.Helpers;
+
+import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
+
+import Items.HealthItem;
+import enums.Colors;
+import enums.HealthItems;
+import enums.JobNames;
+import enums.Texts;
+import main.Character;
+import main.Job;
+import main.Monster;
+import main.Stage;
+import main.Equipements.Weapon;
+
+public class Helpers {
+		
+	public static int getRandomNumber(int min, int max) {
+		Random random = new Random();
+		return random.nextInt((max - min) + 1) + min;
+	}
+
+	public static int healthDamage(int damage, int healthPoints) {
+		return healthPoints = healthPoints - damage;
+	}
+	
+	public static int healthPointsRestored(int healthRestoreValue, int healthPoints) {
+		return healthPoints = healthPoints + healthRestoreValue;
+	}
+	
+	public static int checkingNumber(Scanner scanner, int min, int max) {
+	    int num = 0;
+	    boolean validInput = false;
+	    while (!validInput) {
+	      System.out.print("Choose between " + min + " and " + max + ": ");
+	      if (scanner.hasNextInt()) {
+	        num = scanner.nextInt();
+	        if (num >= min && num <= max) {
+	          validInput = true;
+	        } else {
+	          System.out.println("Invalid input: not between " + min + " and " + max);
+	        }
+	      } else {
+	        System.out.println("Invalid input: not an integer");
+	        scanner.nextLine(); // consume the invalid input
+	      }
+	    }
+	    return num;
+	}
+	
+	public static String playerHpLeft(int playerHp) {
+		String playerHpLeft = null;
+		if(playerHp > 50) {
+			playerHpLeft = Colors.printInColor(Integer.toString(playerHp), Colors.GREEN);
+		}
+		if(playerHp < 50 && playerHp > 30) {
+			playerHpLeft =  Colors.printInColor(Integer.toString(playerHp), Colors.YELLOW);
+		}
+		if(playerHp < 30 ) {
+			playerHpLeft =  Colors.printInColor(Integer.toString(playerHp), Colors.RED);
+		}
+		return playerHpLeft;
+	}
+	
+	public static void processingStages(Monster Monster, Character Player1, Scanner scanner, List<Stage> stages, int stageNumber) {
+		if(Monster.getMonsterHealth() <= 0 && stages.get(stageNumber).getName() != "Boss Stage" && Player1.getHealthPoints() > 0) {
+			System.out.println("\n" + Monster.getMonsterName() + " defeated! Stage cleared! " + "Player HP left: " + playerHpLeft(Player1.getHealthPoints()));
+			HealthItem Potion = new HealthItem(HealthItems.POTION, HealthItems.POTION.getDescription(), 50);
+			System.out.println(Monster.getMonsterName() + " droped a " + Potion.getHealthItemName() + "! Do you want to use it? \n" + Texts.PRESS1FORYES.getText()+ Texts.PRESS2FORNO.getText() + " \n");
+			int PlayerChoice = checkingNumber(scanner, 1, 2);
+			if(PlayerChoice == 1) {
+				int healthPointsRestored = healthPointsRestored(Potion.getHealthItemValue(), Player1.getHealthPoints());
+				Player1.setHealthPoints(healthPointsRestored);
+				System.out.println(Colors.printInColor(Integer.toString(Potion.getHealthItemValue()), Colors.GREEN) + " HP Restored! Total: " + playerHpLeft(Player1.getHealthPoints()) + " HP. \n");
+			}
+		}
+		//Boss Stage cleared
+		if (stages.get(stageNumber).getName() == "Boss Stage" && Player1.getHealthPoints() > 0) {			
+			System.out.println("\nBoss " + Monster.getMonsterName() + " defeated! \nDungeon cleared! GG WP!\n");
+		}
+	}
+	
+	public static void playerAction(Job job, int PlayerChoice, Monster Monster, Character Player1, int playerAttackDamage, int monsterAttackDamage, Weapon Player1Weapon) {
+		int damage;
+		if(PlayerChoice == 1) { 
+			Texts.playerAttackMonster(Player1, Monster, playerAttackDamage, Player1Weapon);
+			damage = Helpers.healthDamage(playerAttackDamage, Monster.getMonsterHealth());
+			Monster.setMonsterHealth(damage);
+			
+			if (Monster.getMonsterHealth() > 0) {	
+				Monster.setMonsterAttack(monsterAttackDamage);
+				Texts.monsterAttackPlayer(Monster, Player1);
+				damage = Helpers.healthDamage(monsterAttackDamage, Player1.getHealthPoints());
+				Player1.setHealthPoints(damage);
+			}
+		}
+		if(PlayerChoice == 2) { 
+			if (job.getJobName() == JobNames.WARRIOR.getJobName()) {
+				playerAttackDamage = playerAttackDamage - job.guard();
+				damage = Helpers.healthDamage(playerAttackDamage, Monster.getMonsterHealth());
+				Monster.setMonsterHealth(damage);
+
+				monsterAttackDamage = monsterAttackDamage - job.guard();
+				Monster.setMonsterAttack(monsterAttackDamage);
+				damage = Helpers.healthDamage(monsterAttackDamage, Player1.getHealthPoints());
+				Player1.setHealthPoints(damage);
+
+				Texts.warriorUseGuard(Monster, Player1, playerAttackDamage);
+
+			}
+			if (job.getJobName() == JobNames.SORCERER.getJobName()) {
+				playerAttackDamage = playerAttackDamage + job.firebolt();
+				Texts.sorcererUseFirebolt(Player1, Monster, playerAttackDamage);
+				damage = Helpers.healthDamage(playerAttackDamage, Monster.getMonsterHealth());
+				Monster.setMonsterHealth(damage);
+
+				if (Monster.getMonsterHealth() > 0) {	
+					Monster.setMonsterAttack(monsterAttackDamage);
+					Texts.monsterAttackPlayer(Monster, Player1);
+					damage = Helpers.healthDamage(monsterAttackDamage, Player1.getHealthPoints());
+					Player1.setHealthPoints(damage);
+				}
+			}
+		}
+	}
+}
