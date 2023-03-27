@@ -14,7 +14,7 @@ ol {
 }
 
 li {
-  font-size: 20px;
+  font-size: 25px;
   letter-spacing: 2px;
   list-style: none;
   padding-right: 10px;
@@ -22,9 +22,11 @@ li {
 
 .studentsProfessorsMenu{
   margin-left: 132px;
+  transition: width 1s, height 1s, background-color 1s;
 }
 
 .classesCoursesMenu {
   margin-left: 263px;
+  transition: width 1s, height 1s, background-color 1s;
 }
 

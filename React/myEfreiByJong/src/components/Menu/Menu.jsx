@@ -38,29 +38,25 @@ const Menu = () => {
     <>
       <div className={MenuStyles.menu}>
         <Link to="/">
-          <div class="link link--thebe" onMouseOver={handleMouseOut}>
+          <div className="link link--thebe" onMouseOver={handleMouseOut}>
             Accueil
           </div>
         </Link>
-        <div class="link link--dia" onMouseOver={handleMouseOverList}>
+        <div className="link link--dia" onMouseOver={handleMouseOverList}>
           Listes
         </div>
-        <Link to="/createStudent">
           <div
-            class="link link--io"
+            className="link link--io"
             onMouseOver={handleMouseOverStudentsProfessors}
           >
             étudiant/professor
           </div>
-        </Link>
-        <Link to="/createProfessor">
-          <div
-            class="link link--elara"
-            onMouseOver={handleMouseOverClassesCourses}
-          >
-            classe/matière{" "}
-          </div>
-        </Link>
+        <div
+          className="link link--elara"
+          onMouseOver={handleMouseOverClassesCourses}
+        >
+          classe/matière{" "}
+        </div>
       </div>
       {showListsMenu && (
         <ol onMouseLeave={handleMouseOut}>
@@ -79,9 +75,12 @@ const Menu = () => {
         </ol>
       )}
       {showStudentsProfessorsMenu && (
-        <ol class={MenuStyles.studentsProfessorsMenu} onMouseLeave={handleMouseOut}>
+        <ol
+          className={MenuStyles.studentsProfessorsMenu}
+          onMouseLeave={handleMouseOut}
+        >
           <li>
-            <Link to="/list/students">Imaginer un étudiant</Link>
+            <Link to="/createStudent">Imaginer un étudiant</Link>
           </li>
           <li>
             <Link to="/list/students">Concevoir un Professor</Link>
@@ -89,12 +88,14 @@ const Menu = () => {
         </ol>
       )}
       {showClassesCoursesMenu && (
-        <ol class={MenuStyles.classesCoursesMenu} onMouseLeave={handleMouseOut}>
+        <ol
+          className={MenuStyles.classesCoursesMenu}
+          onMouseLeave={handleMouseOut}
+        >
           <li>
-            <Link to="/list/students">Fonder une Classe</Link>
-          </li>
-          <li>
-            <Link to="/list/students">Inventer une Matière</Link>
+            <Link to="/createClassCourse">
+              Fonder une Classe / Inventer une Matière
+            </Link>
           </li>
         </ol>
       )}

@@ -38,17 +38,20 @@ app.get("/:id", async (req, res) => {
 
 //newClass
 app.post("/", async (req, res) => {
-  const newClass = new Class({
-    ...req.body,
-  });
-  newClass.save((err, newClass) => {
-    if (err) {
-      res.status(500).json({ error: err });
-      return;
-    }
+  console.time("class Added !")
+  try {
+    const newClass = new Class({
+      ...req.body,
+    });
+    const classAdded = await newClass.save();
+    
+    res.json(classAdded);
+    console.log("Adding new class..")
+  } catch (err) {
+    res.status(500).json({ error: err });
 
-    res.json(newClass);
-  });
+  }
+  console.timeEnd("Class Added !")
 });
 
 //findOneAndUpdate

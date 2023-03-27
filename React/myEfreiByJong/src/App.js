@@ -17,6 +17,7 @@ const App = () => {
       <Route path="/student/:id" element={<Student />} />
       <Route path="/createStudent/" element={<Creation create="student"/>} />
       <Route path="/createProfessor/" element={<Creation create="professor"/>} />
+      <Route path="/createClassCourse/" element={<Creation create="classCourse"/>} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
