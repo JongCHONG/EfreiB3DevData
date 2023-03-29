@@ -7,6 +7,8 @@ import Button from "../Button/Button";
 
 import ClassCourseFormStyles from "../ClassCourseForm/ClassCourseForm.module.scss";
 
+import { addClass, addCourse } from "../../controllers/classCourseControllers";
+
 const ClassCourseForm = () => {
   const [message, setMessage] = useState();
 
@@ -14,48 +16,36 @@ const ClassCourseForm = () => {
     initialValues: {
       classe: "",
     },
-    onSubmit: (values) => {
-      addClass(values);
+    onSubmit: async (values) => {
+      const reponse = await addClass(values);
+      if (reponse) {
+        setMessage(reponse);
+      }
     },
     validateOnChange: false,
     validationSchema: Yup.object({
-      classe: Yup.string().required("Choisir un nom"),
+      classe: Yup.string().required("Choisir un nom pour la classe"),
     }),
   });
-
-  const addClass = async (values) => {
-    const { classe } = values;
-
-    const response = await fetch("http://localhost:4000/classes", {
-      method: "post",
-      headers: {
-        "Content-type": "application/json",
-      },
-      credentials: "include",
-      body: JSON.stringify({
-        className: classe,
-      }),
-    });
-    if (response.status === 200) {
-      setMessage("Class ajouté!");
-    }
-  };
 
   const formikCourse = useFormik({
     initialValues: {
       course: "",
     },
-    onSubmit: (values) => {
-      // addStudent(values);
+    onSubmit: async (values) => {
+      const reponse = await addCourse(values);
+      if (reponse) {
+        setMessage(reponse);
+      }
     },
     validateOnChange: false,
     validationSchema: Yup.object({
-      course: Yup.string().required("Choisir un nom"),
+      course: Yup.string().required("Choisir un nom pour la matière"),
     }),
   });
 
-  if (formikClass?.errors?.classe || formikClass?.errors?.course) {
-    setMessage(formikClass?.errors?.classe || formikClass?.errors?.course);
+  if (formikClass.errors.classe || formikCourse.errors.course) {
+    setMessage(formikClass.errors.classe || formikCourse.errors.course);
     formikClass.setErrors({});
     formikCourse.setErrors({});
   }
@@ -69,7 +59,6 @@ const ClassCourseForm = () => {
           <form onSubmit={formikClass.handleSubmit}>
             <div className={ClassCourseFormStyles.form}>
               <label>Fonder une classe</label>
-              {formikClass.errors.classe}
               <input
                 type="text"
                 name="classe"
@@ -78,13 +67,12 @@ const ClassCourseForm = () => {
                 value={formikClass.values.classe}
                 error={formikClass.errors.classe}
               />
-              <Button />
+              <Button text="Fonder"/>
             </div>
           </form>
           <form onSubmit={formikCourse.handleSubmit}>
             <div className={ClassCourseFormStyles.form}>
               <label>Inventer une Matière</label>
-              {formikCourse.errors.course}
               <input
                 type="text"
                 name="course"
@@ -93,7 +81,7 @@ const ClassCourseForm = () => {
                 value={formikCourse.values.course}
                 error={formikCourse.errors.course}
               />
-              <Button />
+              <Button text="Inventer"/>
             </div>
           </form>
         </div>

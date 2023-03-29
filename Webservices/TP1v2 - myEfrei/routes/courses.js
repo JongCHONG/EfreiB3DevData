@@ -20,7 +20,7 @@ app.get("/list", async (req, res) => {
 app.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    
+
     const courses = await Course.findById(id).populate({
       path: "classes",
       select: "className",
@@ -35,30 +35,32 @@ app.get("/:id", async (req, res) => {
 
 //newCourse
 app.post("/", async (req, res) => {
+  console.time("Course Added !");
+
   const { class_id } = req.body;
 
-  const newCourse = new Course({
-    ...req.body,
-  });
+  try {
+    const newCourse = new Course({
+      ...req.body,
+    });
 
-  if (class_id) {
-    await Class.findOneAndUpdate(
-      {
-        _id: class_id,
-      },
-      { $push: { courses: newCourse._id } }
-    );
-    newCourse.classes.push(class_id);
-  }
-
-  newCourse.save((err, newCourse) => {
-    if (err) {
-      res.status(500).json({ error: err });
-      return;
+    if (class_id) {
+      await Class.findOneAndUpdate(
+        {
+          _id: class_id,
+        },
+        { $push: { courses: newCourse._id } }
+      );
+      newCourse.classes.push(class_id);
     }
 
-    res.json(newCourse);
-  });
+    const courseAdded = await newCourse.save();
+    console.log("Adding new course...");
+    res.json(courseAdded);
+  } catch (err) {
+    res.status(500).json({ error: err });
+  }
+  console.timeEnd("Course Added !");
 });
 
 //findOneAndUpdate

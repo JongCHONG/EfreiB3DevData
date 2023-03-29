@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 
-const Button = () => {
+const Button = ({ text }) => {
   return (
     <div>
-      <button type="submit" >Créer</button>
+      <button type="submit">{text}</button>
     </div>
   );
 };

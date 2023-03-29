@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import TableRow from "../TableRow/TableRow";
+
+import StudentTableRow from "../StudentRow/StudentRow";
 
 import StudentsListStyles from "./StudentsList.module.scss";
 
@@ -43,11 +44,11 @@ const StudentsList = () => {
         <tr className={StudentsListStyles.separator} />
         {studentsList.map((student) => {
           return (
-            <TableRow
+            <StudentTableRow
               name={student.name}
               sex={student.sex}
               age={student.age}
-              classe={student.class}
+              classe={student.class.className}
             />
           );
         })}

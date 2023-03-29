@@ -28,7 +28,7 @@ StudentSchema.post("save", async (student) => {
   await mongoose
     .model("Class")
     .findOneAndUpdate(
-      { _id: student.class_id },
+      { _id: student.class },
       { $push: { students: student._id } }
     );
 });

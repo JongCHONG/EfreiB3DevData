@@ -67,7 +67,7 @@ const Menu = () => {
             <Link to="/list/students">Professors</Link>
           </li>
           <li>
-            <Link to="/list/students">Classes</Link>
+            <Link to="/list/classes">Classes</Link>
           </li>
           <li>
             <Link to="/list/students">Matières</Link>

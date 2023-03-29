@@ -38,7 +38,7 @@ app.get("/:id", async (req, res) => {
 
 //newClass
 app.post("/", async (req, res) => {
-  console.time("class Added !")
+  console.time("Class Added !")
   try {
     const newClass = new Class({
       ...req.body,

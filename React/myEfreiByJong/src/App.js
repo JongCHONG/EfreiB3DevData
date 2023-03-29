@@ -14,6 +14,7 @@ const App = () => {
     <Routes location={location} key={location.pathname}>
       <Route exact path="/" element={<Home />} />
       <Route path="/list/students" element={<List list="students"/>} />
+      <Route path="/list/classes" element={<List list="classes"/>} />
       <Route path="/student/:id" element={<Student />} />
       <Route path="/createStudent/" element={<Creation create="student"/>} />
       <Route path="/createProfessor/" element={<Creation create="professor"/>} />

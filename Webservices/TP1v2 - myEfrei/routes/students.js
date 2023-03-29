@@ -6,7 +6,7 @@ const Class = require("../models/class");
 
 //findAll
 app.get("/list", async (req, res) => {
-  console.time("Getting student list")
+  console.time("Getting student list");
   try {
     const students = await Student.find({})
       .sort({ name: 1 })
@@ -15,7 +15,7 @@ app.get("/list", async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: err });
   }
-  console.timeEnd("Getting student list")
+  console.timeEnd("Getting student list");
 });
 
 //findOneById
@@ -36,17 +36,19 @@ app.get("/:id", async (req, res) => {
 
 //newStudent
 app.post("/", async (req, res) => {
-  const newStudent = new Student({
-    ...req.body,
-  });
-  newStudent.save((err, newStudent) => {
-    if (err) {
-      res.status(500).json({ error: err });
-      return;
-    }
+  console.time("Student Added !");
+  try {
+    const newStudent = new Student({
+      ...req.body,
+    });
+    const studentAdded = await newStudent.save();
 
-    res.json(newStudent);
-  });
+    res.json(studentAdded);
+    console.log("Adding new student..");
+  } catch (err) {
+    res.status(500).json({ error: err });
+  }
+  console.timeEnd("Student Added !");
 });
 
 //findOneAndUpdate
