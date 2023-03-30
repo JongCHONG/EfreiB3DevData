@@ -8,6 +8,8 @@ import TemplateCard from "../TemplateCard/TemplateCard";
 
 import { fetchClasses } from "../../controllers/classesControllers";
 
+import StudentFormStyles from "./StudentForm.module.scss";
+
 const StudentForm = () => {
   const [classesList, setClassesList] = useState();
 
@@ -25,7 +27,7 @@ const StudentForm = () => {
       name: "",
       sex: "",
       age: "",
-      classe:"",
+      classe: "",
     },
     onSubmit: (values) => {
       addStudent(values);
@@ -35,7 +37,7 @@ const StudentForm = () => {
       name: Yup.string().required("Nom requis"),
       sex: Yup.string().required("Sex requis"),
       age: Yup.string().required("Age requis"),
-      classe: Yup.string().required("Class requis")
+      classe: Yup.string().required("Class requis"),
     }),
   });
 
@@ -54,12 +56,11 @@ const StudentForm = () => {
         name,
         sex,
         age,
-        class: classe
+        class: classe,
       }),
     });
 
     const student = await response.json();
-
   };
 
   if (!classesList) {
@@ -69,57 +70,63 @@ const StudentForm = () => {
   console.log(formik.values);
   return (
     <TemplateCard>
-      <div>
-        <form onSubmit={formik.handleSubmit}>
+      <div className={StudentFormStyles.container}>
+        <div className={StudentFormStyles.title}>Ajouter un étudiant</div>
+          <div className={StudentFormStyles.image} />
           <div>
-            <input
-              type="text"
-              name="name"
-              placeholder="Nom"
-              onChange={formik.handleChange}
-              value={formik.values.name}
-              error={formik.errors.name}
-            />
-            {formik.errors.name}
-          </div>
-          <div>
-            <input
-              type="text"
-              name="sex"
-              placeholder="Sex"
-              onChange={formik.handleChange}
-              value={formik.values.sex}
-              error={formik.errors.sex}
-            />
-            {formik.errors.sex}
-          </div>
-          <div>
-            <input
-              type="number"
-              name="age"
-              min={1}
-              placeholder="Age"
-              onChange={formik.handleChange}
-              value={formik.values.age}
-              error={formik.errors.age}
-            />
-            {formik.errors.age}
-          </div>
-          <select
-            name="classe"
-            value={formik.values.classe}
-            onChange={formik.handleChange}
-          >
-            <option value="" selected hidden>Selectionner une classe</option>
-            {classesList.map((classe) => (
-              <option value={classe._id}>{classe.className}</option>
-            ))}
-          </select>
-          {formik.errors.classe}
+            <form onSubmit={formik.handleSubmit}>
+              <div>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Nom"
+                  onChange={formik.handleChange}
+                  value={formik.values.name}
+                  error={formik.errors.name}
+                />
+                {formik.errors.name}
+              </div>
+              <div>
+                <input
+                  type="text"
+                  name="sex"
+                  placeholder="Sex"
+                  onChange={formik.handleChange}
+                  value={formik.values.sex}
+                  error={formik.errors.sex}
+                />
+                {formik.errors.sex}
+              </div>
+              <div>
+                <input
+                  type="number"
+                  name="age"
+                  min={1}
+                  placeholder="Age"
+                  onChange={formik.handleChange}
+                  value={formik.values.age}
+                  error={formik.errors.age}
+                />
+                {formik.errors.age}
+              </div>
+              <select
+                name="classe"
+                value={formik.values.classe}
+                onChange={formik.handleChange}
+              >
+                <option value="" selected hidden>
+                  Selectionner une classe
+                </option>
+                {classesList.map((classe) => (
+                  <option value={classe._id}>{classe.className}</option>
+                ))}
+              </select>
+              {formik.errors.classe}
 
-          <Button text="Imaginer" />
-        </form>
-      </div>
+              <Button text="Imaginer" />
+            </form>
+          </div>
+        </div>
     </TemplateCard>
   );
 };

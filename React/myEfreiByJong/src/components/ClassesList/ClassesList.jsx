@@ -11,11 +11,11 @@ const ClassesList = () => {
 
   const getClassesList = async () => {
     const data = await fetchClasses();
-    setClassesList(data)
+    setClassesList(data);
   };
 
-  useEffect( () => {
-    getClassesList()
+  useEffect(() => {
+    getClassesList();
   }, []);
 
   if (!classesList) {
@@ -25,9 +25,7 @@ const ClassesList = () => {
   console.log("classesList", classesList);
   return (
     <div>
-      <center>
-        <div className={ClassesListStyles.title}>Liste des classes</div>
-      </center>
+      <div className={ClassesListStyles.title}>Liste des classes</div>
       {classesList.map((classe) => {
         return <ClassRow classe={classe} />;
       })}

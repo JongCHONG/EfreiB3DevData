@@ -29,31 +29,34 @@ const StudentsList = () => {
 
   console.log("studentsList", studentsList);
   return (
-    <table className={StudentsListStyles.table}>
-      <thead>
-        <tr>
-          <th>Nom</th>
-          <th>Sex</th>
-          <th>Age</th>
-          <th>Classe</th>
-          <th>Modifier</th>
-        </tr>
-        <tr className={StudentsListStyles.separator} />
-      </thead>
-      <tbody>
-        <tr className={StudentsListStyles.separator} />
-        {studentsList.map((student) => {
-          return (
-            <StudentTableRow
-              name={student.name}
-              sex={student.sex}
-              age={student.age}
-              classe={student.class.className}
-            />
-          );
-        })}
-      </tbody>
-    </table>
+    <>
+      <div className={StudentsListStyles.title}>Liste des Etudiants</div>
+      <table className={StudentsListStyles.table}>
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Sex</th>
+            <th>Age</th>
+            <th>Classe</th>
+            <th>Modifier</th>
+          </tr>
+          <tr className={StudentsListStyles.separator} />
+        </thead>
+        <tbody>
+          <tr className={StudentsListStyles.separator} />
+          {studentsList.map((student) => {
+            return (
+              <StudentTableRow
+                name={student.name}
+                sex={student.sex}
+                age={student.age}
+                classe={student.class.className}
+              />
+            );
+          })}
+        </tbody>
+      </table>
+    </>
   );
 };
 

@@ -1,0 +1,22 @@
+.container{
+  margin-top: 35px;
+}
+
+.title {
+  font-size: 20px;
+  width: 100%;
+  border-bottom: 1px solid white;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.image {
+  width: 50%;
+  height: 100px;
+  display: flex;
+  margin-right: 10px;
+  background: url("../Images//student-form.jpeg") center;
+  background-size: cover;
+  opacity: 0.8;
+}

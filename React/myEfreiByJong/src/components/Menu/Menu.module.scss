@@ -1,9 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Six+Caps&display=swap");
-
+.container {
+  display: flex;
+  flex-direction: column;
+}
 .menu {
   font-family: "Six Caps", sans-serif;
   display: flex;
   justify-content: space-evenly;
+  height: 50px;
 }
 
 ol {
@@ -20,13 +24,10 @@ li {
   padding-right: 10px;
 }
 
-.studentsProfessorsMenu{
+.studentsProfessorsMenu {
   margin-left: 132px;
-  transition: width 1s, height 1s, background-color 1s;
 }
 
 .classesCoursesMenu {
   margin-left: 263px;
-  transition: width 1s, height 1s, background-color 1s;
 }
-

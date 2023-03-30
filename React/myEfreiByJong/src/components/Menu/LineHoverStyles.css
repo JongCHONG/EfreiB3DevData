@@ -22,6 +22,15 @@
   content: "";
 }
 
+.expand {
+  height: 50px;
+  transition: height 2s ease;
+}
+
+.expand:hover {
+  height: 100px;
+}
+
 .link--metis {
   font-family: bely-display, sans-serif;
   text-transform: lowercase;
