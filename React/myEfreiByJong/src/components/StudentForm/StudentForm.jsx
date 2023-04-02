@@ -7,15 +7,17 @@ import Button from "../Button/Button";
 import TemplateCard from "../TemplateCard/TemplateCard";
 
 import { fetchClasses } from "../../controllers/classesControllers";
+import { addStudent } from "../../controllers/studentsControllers";
 
 import StudentFormStyles from "./StudentForm.module.scss";
 
 const StudentForm = () => {
   const [classesList, setClassesList] = useState();
+  const [message, setMessage] = useState();
 
   const getClassesList = async () => {
-    const data = await fetchClasses();
-    setClassesList(data);
+    const classes = await fetchClasses();
+    setClassesList(classes);
   };
 
   useEffect(() => {
@@ -29,8 +31,17 @@ const StudentForm = () => {
       age: "",
       classe: "",
     },
-    onSubmit: (values) => {
-      addStudent(values);
+    onSubmit: async (values) => {
+      const reponse = await addStudent(values);
+      if (reponse) {
+        setMessage(reponse);
+        formik.setValues({
+          name: "",
+          sex: "",
+          age: "",
+          classe: "",
+        });
+      }
     },
     validateOnChange: false,
     validationSchema: Yup.object({
@@ -41,92 +52,74 @@ const StudentForm = () => {
     }),
   });
 
-  const addStudent = async (values) => {
-    console.log(values);
-
-    const { name, sex, age, classe } = values;
-
-    const response = await fetch("http://localhost:4000/students", {
-      method: "post",
-      headers: {
-        "Content-type": "application/json",
-      },
-      credentials: "include",
-      body: JSON.stringify({
-        name,
-        sex,
-        age,
-        class: classe,
-      }),
-    });
-
-    const student = await response.json();
-  };
-
   if (!classesList) {
     return <h1>Chargement...</h1>;
   }
 
-  console.log(formik.values);
   return (
     <TemplateCard>
       <div className={StudentFormStyles.container}>
         <div className={StudentFormStyles.title}>Ajouter un étudiant</div>
-          <div className={StudentFormStyles.image} />
-          <div>
-            <form onSubmit={formik.handleSubmit}>
-              <div>
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Nom"
-                  onChange={formik.handleChange}
-                  value={formik.values.name}
-                  error={formik.errors.name}
-                />
-                {formik.errors.name}
-              </div>
-              <div>
-                <input
-                  type="text"
-                  name="sex"
-                  placeholder="Sex"
-                  onChange={formik.handleChange}
-                  value={formik.values.sex}
-                  error={formik.errors.sex}
-                />
-                {formik.errors.sex}
-              </div>
-              <div>
-                <input
-                  type="number"
-                  name="age"
-                  min={1}
-                  placeholder="Age"
-                  onChange={formik.handleChange}
-                  value={formik.values.age}
-                  error={formik.errors.age}
-                />
-                {formik.errors.age}
-              </div>
-              <select
-                name="classe"
-                value={formik.values.classe}
-                onChange={formik.handleChange}
-              >
-                <option value="" selected hidden>
-                  Selectionner une classe
-                </option>
-                {classesList.map((classe) => (
-                  <option value={classe._id}>{classe.className}</option>
-                ))}
-              </select>
-              {formik.errors.classe}
-
-              <Button text="Imaginer" />
-            </form>
+        <div className={StudentFormStyles.image} />
+        <form onSubmit={formik.handleSubmit}>
+          <div className={StudentFormStyles.form}>
+            <input
+              type="text"
+              name="name"
+              placeholder="Nom"
+              onChange={formik.handleChange}
+              value={formik.values.name}
+              error={formik.errors.name}
+            />
+            <div className={StudentFormStyles.error}>{formik.errors.name}</div>
           </div>
-        </div>
+          <div className={StudentFormStyles.form}>
+            <input
+              type="text"
+              name="sex"
+              placeholder="Sex"
+              onChange={formik.handleChange}
+              value={formik.values.sex}
+              error={formik.errors.sex}
+            />
+            <div className={StudentFormStyles.error}>{formik.errors.sex}</div>
+          </div>
+          <div className={StudentFormStyles.form}>
+            <input
+              type="number"
+              name="age"
+              min={1}
+              placeholder="Age"
+              onChange={formik.handleChange}
+              value={formik.values.age}
+              error={formik.errors.age}
+            />
+            <div className={StudentFormStyles.error}>{formik.errors.age}</div>
+          </div>
+          <div className={StudentFormStyles.form}>
+            <select
+              name="classe"
+              value={formik.values.classe}
+              onChange={formik.handleChange}
+              className={StudentFormStyles.select}
+            >
+              <option value="" selected hidden>
+                Selectionner une classe
+              </option>
+              {classesList.map((classe) => (
+                <option value={classe._id}>{classe.className}</option>
+              ))}
+            </select>
+            <div className={StudentFormStyles.error}>
+              {formik.errors.classe}
+            </div>
+          </div>
+          <div className={StudentFormStyles.buttonMessage}>
+            <Button text="Imaginer" />
+            <div className={StudentFormStyles.message}>{message}</div>
+          </div>
+        </form>
+      </div>
     </TemplateCard>
   );
 };

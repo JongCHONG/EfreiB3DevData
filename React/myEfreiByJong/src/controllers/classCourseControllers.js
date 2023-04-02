@@ -17,7 +17,7 @@ export const addClass = async (values) => {
 };
 
 export const addCourse = async (values) => {
-  const { course } = values;
+  const { course, class_id } = values;
 
   const response = await fetch("http://localhost:4000/courses", {
     method: "post",
@@ -27,6 +27,7 @@ export const addCourse = async (values) => {
     credentials: "include",
     body: JSON.stringify({
       courseName: course,
+      class_id
     }),
   });
   if (response.status === 200) {

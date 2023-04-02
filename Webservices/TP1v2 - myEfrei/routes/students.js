@@ -6,7 +6,7 @@ const Class = require("../models/class");
 
 //findAll
 app.get("/list", async (req, res) => {
-  console.time("Getting student list");
+  console.time("Getting students list");
   try {
     const students = await Student.find({})
       .sort({ name: 1 })
@@ -15,7 +15,7 @@ app.get("/list", async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: err });
   }
-  console.timeEnd("Getting student list");
+  console.timeEnd("Getting students list");
 });
 
 //findOneById

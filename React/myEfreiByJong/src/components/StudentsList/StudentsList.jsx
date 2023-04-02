@@ -2,21 +2,16 @@ import React, { useState, useEffect } from "react";
 
 import StudentTableRow from "../StudentRow/StudentRow";
 
+import { fetchStudents } from "../../controllers/studentsControllers";
+
 import StudentsListStyles from "./StudentsList.module.scss";
 
 const StudentsList = () => {
   const [studentsList, setStudentsList] = useState();
 
   const getStudentsList = async () => {
-    const response = await fetch(`http://localhost:4000/students/list`, {
-      credentials: "include",
-    });
-    const data = await response.json();
-    if (data.error) {
-      // navigate('/login')
-    } else {
-      setStudentsList(data);
-    }
+    const data =  await fetchStudents();
+    setStudentsList(data)
   };
 
   useEffect(() => {

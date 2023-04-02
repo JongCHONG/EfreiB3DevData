@@ -7,15 +7,19 @@ const Course = require('../models/course')
 
 //findAll
 app.get("/list", async (req, res) => {
+  console.time("Getting classes list");
   try {
     const classes = await Class.find({})
       .sort({ className: 1 })
       .populate({ path: "students", select: "name" })
-      .populate({ path: "courses", select: "courseName" });
+      .populate({ path: "courses", select: "courseName" })
+      .populate({ path: "professors", select: "lastName" });
     res.json(classes);
   } catch (err) {
     res.status(500).json({ error: err });
   }
+  console.timeEnd("Getting classes list");
+
 });
 
 //findOneById

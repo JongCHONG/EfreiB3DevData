@@ -36,28 +36,33 @@ app.get("/:id", async (req, res) => {
 
 //newProfessor
 app.post("/", async (req, res) => {
-  const { class_id } = req.body;
+  console.time("Professor Added !");
 
-  const newProfessor = new Professor({
-    ...req.body,
-  });
-  if (class_id) {
-    await Class.findOneAndUpdate(
-      {
-        _id: class_id,
-      },
-      { $push: { professors: newProfessor._id } }
-    );
-    newProfessor.classes.push(class_id);
-  }
-  newProfessor.save((err, newProfessor) => {
-    if (err) {
-      res.status(500).json({ error: err });
-      return;
+  try {
+    const { class_id } = req.body;
+
+    const newProfessor = new Professor({
+      ...req.body,
+    });
+    if (class_id) {
+      await Class.findOneAndUpdate(
+        {
+          _id: class_id,
+        },
+        { $push: { professors: newProfessor._id } }
+      );
+      newProfessor.classes.push(class_id);
     }
 
-    res.json(newProfessor);
-  });
+    const professorAdded = await newProfessor.save();
+
+    res.json(professorAdded);
+    console.log("Adding new professor..");
+  } catch (err) {
+    res.status(500).json({ error: err });
+  }
+
+  console.timeEnd("Professor Added !");
 });
 
 //findOneAndUpdate

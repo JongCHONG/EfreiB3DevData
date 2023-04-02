@@ -24,12 +24,14 @@ const ClassesList = () => {
 
   console.log("classesList", classesList);
   return (
-    <div>
+    <>
       <div className={ClassesListStyles.title}>Liste des classes</div>
-      {classesList.map((classe) => {
-        return <ClassRow classe={classe} />;
-      })}
-    </div>
+      <div className={ClassesListStyles.classes}>
+        {classesList.map((classe) => {
+          return <ClassRow classe={classe} />;
+        })}
+      </div>
+    </>
   );
 };
 

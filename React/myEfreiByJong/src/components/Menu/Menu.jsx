@@ -83,7 +83,7 @@ const Menu = () => {
             <Link to="/createStudent">Imaginer un étudiant</Link>
           </li>
           <li>
-            <Link to="/list/students">Concevoir un Professor</Link>
+            <Link to="/createProfessor">Concevoir un Professor</Link>
           </li>
         </ol>
       )}
