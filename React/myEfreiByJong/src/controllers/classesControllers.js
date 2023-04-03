@@ -6,3 +6,21 @@ export const fetchClasses = async () => {
 
   return data;
 };
+
+export const addClass = async (values) => {
+  const { classe } = values;
+
+  const response = await fetch("http://localhost:4000/classes", {
+    method: "post",
+    headers: {
+      "Content-type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify({
+      className: classe,
+    }),
+  });
+  if (response.status === 200) {
+    return "Classe fondée!";
+  }
+};

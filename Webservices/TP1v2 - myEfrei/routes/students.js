@@ -36,7 +36,7 @@ app.get("/:id", async (req, res) => {
 
 //newStudent
 app.post("/", async (req, res) => {
-  console.time("Student Added !");
+  console.time("Duration of adding new student");
   try {
     const newStudent = new Student({
       ...req.body,
@@ -44,11 +44,12 @@ app.post("/", async (req, res) => {
     const studentAdded = await newStudent.save();
 
     res.json(studentAdded);
-    console.log("Adding new student..");
+    console.log("Student added !");
   } catch (err) {
     res.status(500).json({ error: err });
+    console.log("Error adding new student...");
   }
-  console.timeEnd("Student Added !");
+  console.timeEnd("Duration of adding new student");
 });
 
 //findOneAndUpdate

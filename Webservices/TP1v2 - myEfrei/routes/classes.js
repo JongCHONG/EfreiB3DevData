@@ -42,7 +42,7 @@ app.get("/:id", async (req, res) => {
 
 //newClass
 app.post("/", async (req, res) => {
-  console.time("Class Added !")
+  console.time("Duration of adding new class")
   try {
     const newClass = new Class({
       ...req.body,
@@ -50,12 +50,12 @@ app.post("/", async (req, res) => {
     const classAdded = await newClass.save();
     
     res.json(classAdded);
-    console.log("Adding new class..")
+    console.log("Class added !")
   } catch (err) {
     res.status(500).json({ error: err });
-
+    console.log("Error adding new class..");
   }
-  console.timeEnd("Class Added !")
+  console.timeEnd("Duration of adding new class")
 });
 
 //findOneAndUpdate

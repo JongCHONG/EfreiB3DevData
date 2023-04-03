@@ -6,14 +6,17 @@ const Class = require("../models/class");
 
 //findAll
 app.get("/list", async (req, res) => {
+  console.time("Getting courses list");
   try {
     const courses = await Course.find({})
       .sort({ name: 1 })
-      .populate({ path: "classes", select: "className" });
+      .populate({ path: "classes", select: "className" })
+      .populate({ path: "professors", select: "lastName" });
     res.json(courses);
   } catch (err) {
     res.status(500).json({ error: err });
   }
+  console.timeEnd("Getting courses list");
 });
 
 //findOneById
@@ -35,7 +38,7 @@ app.get("/:id", async (req, res) => {
 
 //newCourse
 app.post("/", async (req, res) => {
-  console.time("Course Added !");
+  console.time("Duration of adding new course");
 
   const { class_id } = req.body;
 
@@ -55,12 +58,13 @@ app.post("/", async (req, res) => {
     }
 
     const courseAdded = await newCourse.save();
-    console.log("Adding new course...");
+    console.log("Course added !");
     res.json(courseAdded);
   } catch (err) {
     res.status(500).json({ error: err });
+    console.log("Error adding new course..");
   }
-  console.timeEnd("Course Added !");
+  console.timeEnd("Duration of adding new course");
 });
 
 //findOneAndUpdate

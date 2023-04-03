@@ -7,8 +7,8 @@ import Button from "../Button/Button";
 
 import ClassCourseFormStyles from "../ClassCourseForm/ClassCourseForm.module.scss";
 
-import { addClass, addCourse } from "../../controllers/classCourseControllers";
-import { fetchClasses } from "../../controllers/classesControllers";
+import { addClass, fetchClasses } from "../../controllers/classesControllers";
+import { addCourse } from "../../controllers/coursesControllers";
 
 const ClassCourseForm = () => {
   const [classesList, setClassesList] = useState();

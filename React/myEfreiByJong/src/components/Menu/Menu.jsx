@@ -64,13 +64,13 @@ const Menu = () => {
             <Link to="/list/students">Etudiants</Link>
           </li>
           <li>
-            <Link to="/list/students">Professors</Link>
+            <Link to="/list/professors">Professors</Link>
           </li>
           <li>
             <Link to="/list/classes">Classes</Link>
           </li>
           <li>
-            <Link to="/list/students">Matières</Link>
+            <Link to="/list/courses">Matières</Link>
           </li>
         </ol>
       )}

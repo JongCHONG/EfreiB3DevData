@@ -22,7 +22,6 @@ const ClassesList = () => {
     return <h1>Chargement...</h1>;
   }
 
-  console.log("classesList", classesList);
   return (
     <>
       <div className={ClassesListStyles.title}>Liste des classes</div>

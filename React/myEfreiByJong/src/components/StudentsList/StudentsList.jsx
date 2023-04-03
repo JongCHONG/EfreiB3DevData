@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 
-import StudentTableRow from "../StudentRow/StudentRow";
+import StudentTableRow from "../StudentTableRow/StudentTableRow";
 
 import { fetchStudents } from "../../controllers/studentsControllers";
 
 import StudentsListStyles from "./StudentsList.module.scss";
+import { MdDeleteForever, MdEditNote } from "react-icons/md";
 
 const StudentsList = () => {
   const [studentsList, setStudentsList] = useState();
@@ -22,7 +23,7 @@ const StudentsList = () => {
     return <h1>Chargement...</h1>;
   }
 
-  console.log("studentsList", studentsList);
+  console.log(studentsList);
   return (
     <>
       <div className={StudentsListStyles.title}>Liste des Etudiants</div>
@@ -33,7 +34,7 @@ const StudentsList = () => {
             <th>Sex</th>
             <th>Age</th>
             <th>Classe</th>
-            <th>Modifier</th>
+            <th>Modifier/Retirer</th>
           </tr>
           <tr className={StudentsListStyles.separator} />
         </thead>
@@ -41,12 +42,15 @@ const StudentsList = () => {
           <tr className={StudentsListStyles.separator} />
           {studentsList.map((student) => {
             return (
-              <StudentTableRow
-                name={student.name}
-                sex={student.sex}
-                age={student.age}
-                classe={student.class.className}
-              />
+              <tr className={StudentsListStyles.row}>
+              <td>{student.name}</td>
+              <td>{student.sex}</td>
+              <td>{student.age}</td>
+              <td>{student.class.className}</td>
+              <td>
+                <MdEditNote/> / <MdDeleteForever />
+              </td>
+            </tr>
             );
           })}
         </tbody>

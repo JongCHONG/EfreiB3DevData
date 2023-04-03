@@ -1,11 +1,13 @@
 import React from "react";
 
-import StudentsList from "../../components/StudentsList/StudentsList";
 import TemplateCard from "../../components/TemplateCard/TemplateCard";
+import StudentsList from "../../components/StudentsList/StudentsList";
+import ProfessorsList from "../../components/ProfessorsList/ProfessorsList";
+import ClassesList from "../../components/ClassesList/ClassesList";
+import CoursesList from "../../components/CoursesList/CoursesList";
 import TemplateBackground from "../../components/TemplateBackground/TemplateBackground";
 
 import ListPageStyles from "./ListPage.module.scss";
-import ClassesList from "../../components/ClassesList/ClassesList";
 
 const ListPage = ({ list }) => {
   return (
@@ -13,8 +15,9 @@ const ListPage = ({ list }) => {
       <TemplateCard>
         <div className={ListPageStyles.container}>
           {list === "students" && <StudentsList />}
-          {list === "professors" && "<ProfessorForm />"}
+          {list === "professors" && <ProfessorsList />}
           {list === "classes" && <ClassesList />}
+          {list === "courses" && <CoursesList />}
         </div>
       </TemplateCard>
     </TemplateBackground>
