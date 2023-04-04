@@ -7,7 +7,7 @@ const Course = require('../models/course')
 
 //findAll
 app.get("/list", async (req, res) => {
-  console.time("Getting classes list");
+  console.time("Duration of getting classes list");
   try {
     const classes = await Class.find({})
       .sort({ className: 1 })
@@ -18,7 +18,7 @@ app.get("/list", async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: err });
   }
-  console.timeEnd("Getting classes list");
+  console.timeEnd("Duration of getting classes list");
 
 });
 
@@ -53,6 +53,7 @@ app.post("/", async (req, res) => {
     console.log("Class added !")
   } catch (err) {
     res.status(500).json({ error: err });
+    console.log(err);
     console.log("Error adding new class..");
   }
   console.timeEnd("Duration of adding new class")
@@ -77,6 +78,8 @@ app.put("/:id", async (req, res) => {
 
 //deleteOne
 app.delete("/:id", async (req, res) => {
+  console.time("Duration of deleting a class")
+
   const { id } = req.params;
 
   try {
@@ -87,6 +90,8 @@ app.delete("/:id", async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: err });
   }
+  console.timeEnd("Duration of deleting a class")
+
 });
 
 module.exports = app;

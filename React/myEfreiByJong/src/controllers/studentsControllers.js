@@ -24,6 +24,21 @@ export const fetchStudents = async () => {
   const response = await fetch(`http://localhost:4000/students/list`, {
     credentials: "include",
   });
+
+  const data = await response.json();
+
+  return data;
+};
+
+export const deleteStudent = async (_id) => {
+  const response = await fetch(`http://localhost:4000/students/${_id}`, {
+    method: "delete",
+    headers: {
+      "Content-type": "application/json",
+    },
+    credentials: "include",
+  });
+
   const data = await response.json();
 
   return data;

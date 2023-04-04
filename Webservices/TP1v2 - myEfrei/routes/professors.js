@@ -7,7 +7,7 @@ const Class = require("../models/class");
 
 //findAll
 app.get("/list", async (req, res) => {
-  console.time("Getting professors list");
+  console.time("Duration of getting professors list");
 
   try {
     const professors = await Professor.find({})
@@ -18,7 +18,7 @@ app.get("/list", async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: err });
   }
-  console.timeEnd("Getting professors list");
+  console.timeEnd("Duration of getting professors list");
 });
 
 //findOneById
@@ -64,6 +64,7 @@ app.post("/", async (req, res) => {
     console.log("Professor added !");
   } catch (err) {
     res.status(500).json({ error: err });
+    console.log(err);
     console.log("Error adding new professor..");
   }
 
@@ -104,6 +105,8 @@ app.put("/:id", async (req, res) => {
 
 //deleteOne
 app.delete("/:id", async (req, res) => {
+  console.time("Duration of deleting student");
+
   const { id } = req.params;
 
   try {
@@ -112,8 +115,10 @@ app.delete("/:id", async (req, res) => {
     await Course.updateMany({ $pull: { professors: id } });
     res.status(200).json({ success: "Professor deleted" });
   } catch (err) {
+    console.log(err);
     res.status(500).json({ error: err });
   }
+  console.timeEnd("Duration of deleting student");
 });
 
 module.exports = app;

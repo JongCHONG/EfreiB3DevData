@@ -25,3 +25,17 @@ export const addCourse = async (values) => {
     return "Matière inventée!";
   }
 };
+
+export const deleteCourse = async (_id) => {
+  const response = await fetch(`http://localhost:4000/courses/${_id}`, {
+    method: "delete",
+    headers: {
+      "Content-type": "application/json",
+    },
+    credentials: "include",
+  });
+
+  const data = await response.json();
+
+  return data;
+};

@@ -28,3 +28,17 @@ export const fetchProfessors = async () => {
 
   return data;
 };
+
+export const deleteProfessor = async (_id) => {
+  const response = await fetch(`http://localhost:4000/professors/${_id}`, {
+    method: "delete",
+    headers: {
+      "Content-type": "application/json",
+    },
+    credentials: "include",
+  });
+
+  const data = await response.json();
+
+  return data;
+};

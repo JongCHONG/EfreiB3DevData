@@ -1,27 +1,36 @@
 import React, { useState, useEffect } from "react";
 
-import StudentTableRow from "../StudentTableRow/StudentTableRow";
-
-import { fetchStudents } from "../../controllers/studentsControllers";
+import {
+  fetchStudents,
+  deleteStudent,
+} from "../../controllers/studentsControllers";
 
 import StudentsListStyles from "./StudentsList.module.scss";
-import { MdDeleteForever, MdEditNote } from "react-icons/md";
+import { MdDelete, MdEditNote } from "react-icons/md";
 
 const StudentsList = () => {
   const [studentsList, setStudentsList] = useState();
+  const [deleted, setDeleted] = useState();
 
   const getStudentsList = async () => {
-    const data =  await fetchStudents();
-    setStudentsList(data)
+    const data = await fetchStudents();
+    setStudentsList(data);
   };
 
   useEffect(() => {
     getStudentsList();
-  }, []);
+  }, [deleted]);
 
   if (!studentsList) {
     return <h1>Chargement...</h1>;
   }
+
+  const handleDelete = async (_id) => {
+    const data = await deleteStudent(_id);
+    if (data) {
+      setDeleted("Supprimer");
+    }
+  };
 
   console.log(studentsList);
   return (
@@ -43,14 +52,21 @@ const StudentsList = () => {
           {studentsList.map((student) => {
             return (
               <tr className={StudentsListStyles.row}>
-              <td>{student.name}</td>
-              <td>{student.sex}</td>
-              <td>{student.age}</td>
-              <td>{student.class.className}</td>
-              <td>
-                <MdEditNote/> / <MdDeleteForever />
-              </td>
-            </tr>
+                <td>{student.name}</td>
+                <td>{student.sex}</td>
+                <td>{student.age}</td>
+                <td>{student.class.className}</td>
+                <td>
+                  <MdEditNote /> /
+                  <MdDelete
+                    size={16}
+                    onMouseOver={({ target }) => (target.style.color = "red")}
+                    onMouseOut={({ target }) => (target.style.color = "white")}
+                    className={StudentsListStyles.delete}
+                    onClick={() => handleDelete(student._id)}
+                  />
+                </td>
+              </tr>
             );
           })}
         </tbody>

@@ -6,7 +6,7 @@ const Class = require("../models/class");
 
 //findAll
 app.get("/list", async (req, res) => {
-  console.time("Getting courses list");
+  console.time("Duration of getting courses list");
   try {
     const courses = await Course.find({})
       .sort({ name: 1 })
@@ -16,7 +16,7 @@ app.get("/list", async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: err });
   }
-  console.timeEnd("Getting courses list");
+  console.timeEnd("Duration of getting courses list");
 });
 
 //findOneById
@@ -101,6 +101,8 @@ app.put("/:id", async (req, res) => {
 
 //deleteOne
 app.delete("/:id", async (req, res) => {
+  console.time("Duration of deleting a course");
+
   const { id } = req.params;
 
   try {
@@ -110,6 +112,7 @@ app.delete("/:id", async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: err });
   }
+  console.timeEnd("Duration of deleting a course");
 });
 
 module.exports = app;

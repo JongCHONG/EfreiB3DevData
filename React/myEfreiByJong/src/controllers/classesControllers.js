@@ -24,3 +24,17 @@ export const addClass = async (values) => {
     return "Classe fondée!";
   }
 };
+
+export const deleteClass = async (_id) => {
+  const response = await fetch(`http://localhost:4000/classes/${_id}`, {
+    method: "delete",
+    headers: {
+      "Content-type": "application/json",
+    },
+    credentials: "include",
+  });
+
+  const data = await response.json();
+
+  return data;
+};
