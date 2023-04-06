@@ -5,11 +5,15 @@ import {
   deleteStudent,
 } from "../../controllers/studentsControllers";
 
+import EditForm from "../EditForm/EditForm";
+
 import StudentsListStyles from "./StudentsList.module.scss";
 import { MdDelete, MdEditNote } from "react-icons/md";
 
 const StudentsList = () => {
   const [studentsList, setStudentsList] = useState();
+  const [studentId, setStudentId] = useState()
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [deleted, setDeleted] = useState();
 
   const getStudentsList = async () => {
@@ -32,7 +36,15 @@ const StudentsList = () => {
     }
   };
 
-  console.log(studentsList);
+  const handleOpenModal = (id) => {
+    setStudentId(id)
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <>
       <div className={StudentsListStyles.title}>Liste des Etudiants</div>
@@ -57,7 +69,13 @@ const StudentsList = () => {
                 <td>{student.age}</td>
                 <td>{student.class.className}</td>
                 <td>
-                  <MdEditNote /> /
+                  <MdEditNote
+                    size={16}
+                    onMouseOver={({ target }) => (target.style.color = "blue")}
+                    onMouseOut={({ target }) => (target.style.color = "white")}
+                    onClick={() => handleOpenModal(student._id)}
+                  />
+                  /
                   <MdDelete
                     size={16}
                     onMouseOver={({ target }) => (target.style.color = "red")}
@@ -71,6 +89,7 @@ const StudentsList = () => {
           })}
         </tbody>
       </table>
+      <EditForm isOpen={isModalOpen} onClose={handleCloseModal} studentId={studentId} />
     </>
   );
 };

@@ -20,6 +20,8 @@ app.get("/list", async (req, res) => {
 
 //findOneById
 app.get("/:id", async (req, res) => {
+  console.time("Duration of getting student by id");
+
   try {
     const { id } = req.params;
     const student = await Student.findById(id).populate({
@@ -32,6 +34,8 @@ app.get("/:id", async (req, res) => {
     console.log(err);
     res.status(500).json({ error: err });
   }
+  console.timeEnd("Duration of getting student by id");
+
 });
 
 //newStudent

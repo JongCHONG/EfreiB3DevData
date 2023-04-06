@@ -43,3 +43,17 @@ export const deleteStudent = async (_id) => {
 
   return data;
 };
+
+export const getStudentById = async (_id) => {
+  const response = await fetch(`http://localhost:4000/students/${_id}`, {
+    method: "get",
+    headers: {
+      "Content-type": "application/json",
+    },
+    credentials: "include",
+  });
+
+  const data = await response.json();
+
+  return data;
+};
