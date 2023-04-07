@@ -3,18 +3,20 @@ import React, { useState, useEffect } from "react";
 import {
   fetchStudents,
   deleteStudent,
+  getStudentById
 } from "../../controllers/studentsControllers";
 
 import EditForm from "../EditForm/EditForm";
+
 
 import StudentsListStyles from "./StudentsList.module.scss";
 import { MdDelete, MdEditNote } from "react-icons/md";
 
 const StudentsList = () => {
   const [studentsList, setStudentsList] = useState();
-  const [studentId, setStudentId] = useState()
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [deleted, setDeleted] = useState();
+  const [student, setStudent] = useState();
 
   const getStudentsList = async () => {
     const data = await fetchStudents();
@@ -36,13 +38,16 @@ const StudentsList = () => {
     }
   };
 
-  const handleOpenModal = (id) => {
-    setStudentId(id)
+  const handleOpenModal = async (id) => {
+    const response = await getStudentById(id);
+    setStudent(response);
     setIsModalOpen(true);
   };
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
+    setStudent("");
+
   };
 
   return (
@@ -61,9 +66,9 @@ const StudentsList = () => {
         </thead>
         <tbody>
           <tr className={StudentsListStyles.separator} />
-          {studentsList.map((student) => {
+          {studentsList.map((student, index) => {
             return (
-              <tr className={StudentsListStyles.row}>
+              <tr key={index} className={StudentsListStyles.row}>
                 <td>{student.name}</td>
                 <td>{student.sex}</td>
                 <td>{student.age}</td>
@@ -89,7 +94,9 @@ const StudentsList = () => {
           })}
         </tbody>
       </table>
-      <EditForm isOpen={isModalOpen} onClose={handleCloseModal} studentId={studentId} />
+      {student && 
+      <EditForm isOpen={isModalOpen} onClose={handleCloseModal} student={student}/>
+      }
     </>
   );
 };
