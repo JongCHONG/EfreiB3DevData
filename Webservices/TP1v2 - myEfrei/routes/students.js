@@ -13,6 +13,8 @@ app.get("/list", async (req, res) => {
       .populate({ path: "class", select: "className" });
     res.json(students);
   } catch (err) {
+    console.log(err);
+    console.log("Error getting student list");
     res.status(500).json({ error: err });
   }
   console.timeEnd("Duration of getting students list");
@@ -32,10 +34,10 @@ app.get("/:id", async (req, res) => {
     res.json(student);
   } catch (err) {
     console.log(err);
+    console.log("Error finding student");
     res.status(500).json({ error: err });
   }
   console.timeEnd("Duration of getting student by id");
-
 });
 
 //newStudent
@@ -51,6 +53,7 @@ app.post("/", async (req, res) => {
     console.log("Student added !");
   } catch (err) {
     res.status(500).json({ error: err });
+    console.log(err);
     console.log("Error adding new student...");
   }
   console.timeEnd("Duration of adding new student");
@@ -58,6 +61,7 @@ app.post("/", async (req, res) => {
 
 //findOneAndUpdate
 app.put("/:id", async (req, res) => {
+  console.time("Duration of updating student");
   const { id } = req.params;
 
   try {
@@ -67,10 +71,14 @@ app.put("/:id", async (req, res) => {
       { new: true }
     ).exec();
 
+    console.log("Updating student...");
     res.json(student);
   } catch (err) {
     res.status(500).json({ error: err });
+    console.log(err);
+    console.log("Error updating student...");
   }
+  console.timeEnd("Duration of updating student");
 });
 
 //deleteOne
@@ -89,6 +97,8 @@ app.delete("/:id", async (req, res) => {
     res.status(200).json({ success: "Student deleted" });
   } catch (err) {
     res.status(500).json({ error: err });
+    console.log(err);
+    console.log("Error deleting student...");
   }
   console.timeEnd("Duration of deleting student");
 });

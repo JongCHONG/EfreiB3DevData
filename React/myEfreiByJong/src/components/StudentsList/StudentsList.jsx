@@ -3,11 +3,10 @@ import React, { useState, useEffect } from "react";
 import {
   fetchStudents,
   deleteStudent,
-  getStudentById
+  getStudentById,
 } from "../../controllers/studentsControllers";
 
-import EditForm from "../EditForm/EditForm";
-
+import EditStudentForm from "../EditStudentForm/EditStudentForm";
 
 import StudentsListStyles from "./StudentsList.module.scss";
 import { MdDelete, MdEditNote } from "react-icons/md";
@@ -25,7 +24,7 @@ const StudentsList = () => {
 
   useEffect(() => {
     getStudentsList();
-  }, [deleted]);
+  }, [deleted, isModalOpen]);
 
   if (!studentsList) {
     return <h1>Chargement...</h1>;
@@ -47,7 +46,6 @@ const StudentsList = () => {
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setStudent("");
-
   };
 
   return (
@@ -94,9 +92,13 @@ const StudentsList = () => {
           })}
         </tbody>
       </table>
-      {student && 
-      <EditForm isOpen={isModalOpen} onClose={handleCloseModal} student={student}/>
-      }
+      {student && (
+        <EditStudentForm
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+          student={student}
+        />
+      )}
     </>
   );
 };

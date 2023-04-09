@@ -73,6 +73,8 @@ app.post("/", async (req, res) => {
 
 //findOneAndUpdate
 app.put("/:id", async (req, res) => {
+  console.time("Duration of updating professor");
+
   const { class_id } = req.body;
   const { id } = req.params;
 
@@ -97,10 +99,14 @@ app.put("/:id", async (req, res) => {
       ).exec();
     }
 
+    console.log("Updating Professor...");
     res.json(updateProfessor);
   } catch (err) {
+    console.log(err);
     res.status(500).json({ error: err });
   }
+  console.timeEnd("Duration of updating professor");
+
 });
 
 //deleteOne

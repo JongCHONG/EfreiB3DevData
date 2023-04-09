@@ -42,3 +42,38 @@ export const deleteProfessor = async (_id) => {
 
   return data;
 };
+
+export const getProfessorById = async (_id) => {
+  const response = await fetch(`http://localhost:4000/professors/${_id}`, {
+    method: "get",
+    headers: {
+      "Content-type": "application/json",
+    },
+    credentials: "include",
+  });
+
+  const data = await response.json();
+
+  return data;
+};
+
+export const updateProfessorById = async (values, _id) => {
+  const { lastName, course, email } = values;
+
+  const response = await fetch(`http://localhost:4000/professors/${_id}`, {
+    method: "put",
+    headers: {
+      "Content-type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify({
+      lastName,
+      course_id: course,
+      email,
+    }),
+  });
+
+  if (response.status === 200) {
+    return "Professor modifié!";
+  }
+};

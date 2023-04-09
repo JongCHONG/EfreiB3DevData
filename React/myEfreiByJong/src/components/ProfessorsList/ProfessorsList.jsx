@@ -3,11 +3,15 @@ import React, { useState, useEffect } from "react";
 import ProfessorListStyles from "./ProfessorsList.module.scss";
 import { MdDelete, MdEditNote } from "react-icons/md";
 
-import { fetchProfessors, deleteProfessor } from "../../controllers/professorsControllers";
+import { fetchProfessors, deleteProfessor, getProfessorById } from "../../controllers/professorsControllers";
+
+import EditProfessorForm from "../EditProfessorForm/EditProfessorForm";
 
 const ProfessorsList = () => {
   const [professorsList, setProfessorsList] = useState();
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [deleted, setDeleted] = useState();
+  const [professor, setProfessor] = useState();
 
   const getProfessorsList = async () => {
     const data = await fetchProfessors();
@@ -16,13 +20,24 @@ const ProfessorsList = () => {
 
   useEffect(() => {
     getProfessorsList();
-  }, [deleted]);
+  }, [deleted, isModalOpen]);
 
   const handleDelete = async (_id) => {
     const data = await deleteProfessor(_id);
     if (data) {
       setDeleted("Supprimer");
     }
+  };
+
+  const handleOpenModal = async (id) => {
+    const response = await getProfessorById(id);
+    setProfessor(response);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setProfessor("");
   };
 
   if (!professorsList) {
@@ -33,9 +48,9 @@ const ProfessorsList = () => {
     <>
       <div className={ProfessorListStyles.title}>Liste des professors</div>
       <div className={ProfessorListStyles.professorContainer}>
-        {professorsList.map((professor) => {
+        {professorsList.map((professor, index) => {
           return (
-            <div className={ProfessorListStyles.professor}>
+            <div key={index} className={ProfessorListStyles.professor}>
               <div className={ProfessorListStyles.professorInfos}>
                 <div>
                   <div>Nom : {professor.lastName}</div>
@@ -43,7 +58,13 @@ const ProfessorsList = () => {
                   <div>Email : {professor.email}</div>
                 </div>
                 <div>
-                  <MdEditNote />
+                <MdEditNote
+                    size={16}
+                    onMouseOver={({ target }) => (target.style.color = "blue")}
+                    onMouseOut={({ target }) => (target.style.color = "white")}
+                    onClick={() => handleOpenModal(professor._id)}
+                  />
+                  /
                   <MdDelete
                     size={16}
                     onMouseOver={({ target }) => (target.style.color = "red")}
@@ -54,8 +75,8 @@ const ProfessorsList = () => {
                 </div>
               </div>
               <div className={ProfessorListStyles.classes}>
-                {professor.classes.map((classe) => (
-                  <div className={ProfessorListStyles.classe}>
+                {professor.classes.map((classe, index) => (
+                  <div key={index} className={ProfessorListStyles.classe}>
                     {classe.className}
                   </div>
                 ))}
@@ -64,6 +85,13 @@ const ProfessorsList = () => {
           );
         })}
       </div>
+      {professor && (
+        <EditProfessorForm
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+          professor={professor}
+        />
+      )}
     </>
   );
 };

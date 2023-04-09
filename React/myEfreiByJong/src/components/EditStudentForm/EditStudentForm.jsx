@@ -2,16 +2,17 @@ import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-import EditFormStyles from "./EditForm.module.scss";
+import EditStudentFormStyles from "./EditStudentForm.module.scss";
 
 import Button from "../Button/Button";
 
 import { fetchClasses } from "../../controllers/classesControllers";
 
-const EditForm = ({ isOpen, onClose, children, student }) => {
+import { updateStudentById } from "../../controllers/studentsControllers";
+
+const EditStudentForm = ({ isOpen, onClose, children, student }) => {
   const [classesList, setClassesList] = useState();
-  const [message, setMessage] = useState();
-  const { name, sex, age } = student;
+  const { name, sex, age, _id } = student;
 
   const getClassesList = async () => {
     const response = await fetchClasses();
@@ -27,20 +28,20 @@ const EditForm = ({ isOpen, onClose, children, student }) => {
       name,
       sex,
       age,
-      classe: student.class._id
+      classe: student.class._id,
     },
     onSubmit: async (values) => {
-      // const reponse = await addStudent(values);
-      // if (reponse) {
-      //   setMessage(reponse);
-      //   formik.setValues({
-      //     name: "",
-      //     sex: "",
-      //     age: "",
-      //     classe: "",
-      //   });
-      // }
-      onClose()
+      const { name, sex, age, classe } = student;
+      const reponse = await updateStudentById(values, _id);
+      if (reponse) {
+        formik.setValues({
+          name,
+          sex,
+          age,
+          classe
+        });
+      }
+      onClose();
     },
     validateOnChange: false,
     validationSchema: Yup.object({
@@ -61,9 +62,9 @@ const EditForm = ({ isOpen, onClose, children, student }) => {
 
   return (
     <>
-      <div style={modalStyles} className={EditFormStyles.modalStyles}>
+      <div style={modalStyles} className={EditStudentFormStyles.modalStyles}>
         <form onSubmit={formik.handleSubmit}>
-          <div className={EditFormStyles.form}>
+          <div className={EditStudentFormStyles.form}>
             <input
               type="text"
               name="name"
@@ -72,9 +73,9 @@ const EditForm = ({ isOpen, onClose, children, student }) => {
               value={formik.values.name}
               error={formik.errors.name}
             />
-            <div className={EditFormStyles.error}>{formik.errors.name}</div>
+            <div className={EditStudentFormStyles.error}>{formik.errors.name}</div>
           </div>
-          <div className={EditFormStyles.form}>
+          <div className={EditStudentFormStyles.form}>
             <input
               type="text"
               name="sex"
@@ -83,9 +84,9 @@ const EditForm = ({ isOpen, onClose, children, student }) => {
               value={formik.values.sex}
               error={formik.errors.sex}
             />
-            <div className={EditFormStyles.error}>{formik.errors.sex}</div>
+            <div className={EditStudentFormStyles.error}>{formik.errors.sex}</div>
           </div>
-          <div className={EditFormStyles.form}>
+          <div className={EditStudentFormStyles.form}>
             <input
               type="number"
               name="age"
@@ -95,32 +96,33 @@ const EditForm = ({ isOpen, onClose, children, student }) => {
               value={formik.values.age}
               error={formik.errors.age}
             />
-            <div className={EditFormStyles.error}>{formik.errors.age}</div>
+            <div className={EditStudentFormStyles.error}>{formik.errors.age}</div>
           </div>
-          <div className={EditFormStyles.form}>
+          <div className={EditStudentFormStyles.form}>
             <select
               name="classe"
               value={formik.values.classe}
               onChange={formik.handleChange}
-              className={EditFormStyles.select}
+              className={EditStudentFormStyles.select}
             >
               <option value="" hidden>
                 Selectionner une classe
               </option>
               {classesList?.map((classe, index) => (
-                <option key={index} value={classe._id}>{classe.className}</option>
+                <option key={index} value={classe._id}>
+                  {classe.className}
+                </option>
               ))}
             </select>
-            <div className={EditFormStyles.error}>{formik.errors.classe}</div>
+            <div className={EditStudentFormStyles.error}>{formik.errors.classe}</div>
           </div>
-          <div className={EditFormStyles.buttonMessage}>
-            <Button text="Modifier"/>
-            <div className={EditFormStyles.message}>{message}</div>
+          <div className={EditStudentFormStyles.buttonMessage}>
+            <Button text="Modifier" />
           </div>
         </form>
       </div>
       <div
-        className={EditFormStyles.overlay}
+        className={EditStudentFormStyles.overlay}
         style={overlayStyles}
         onClick={onClose}
       />
@@ -128,4 +130,4 @@ const EditForm = ({ isOpen, onClose, children, student }) => {
   );
 };
 
-export default EditForm;
+export default EditStudentForm;
